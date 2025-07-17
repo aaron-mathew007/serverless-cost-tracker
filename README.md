@@ -35,6 +35,7 @@
 
 ### 1. Clone Repository
 git clone https://github.com/aaron-mathew007/serverless-cost-tracker.git
+
 cd serverless-cost-tracker
 
 
