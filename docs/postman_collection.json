@@ -1,0 +1,98 @@
+{
+  "info": {
+    "name": "Serverless Cost Tracker API",
+    "description": "Complete API collection for testing the Cost Tracker API",
+    "version": "1.0.0"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://your-api-gateway-url.execute-api.us-east-1.amazonaws.com/dev",
+      "type": "string"
+    },
+    {
+      "key": "apiKey",
+      "value": "your-api-key",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "Create Expense",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "{{apiKey}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"service_name\": \"EC2\",\n  \"client\": \"production\",\n  \"cost\": 25.50,\n  \"description\": \"Monthly EC2 instance cost\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/expenses",
+          "host": ["{{baseUrl}}"],
+          "path": ["expenses"]
+        }
+      }
+    },
+    {
+      "name": "Get All Expenses",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{apiKey}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/expenses",
+          "host": ["{{baseUrl}}"],
+          "path": ["expenses"]
+        }
+      }
+    },
+    {
+      "name": "Get Cost Breakdown",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{apiKey}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/cost-breakdown?group_by=service",
+          "host": ["{{baseUrl}}"],
+          "path": ["cost-breakdown"],
+          "query": [
+            {
+              "key": "group_by",
+              "value": "service"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
